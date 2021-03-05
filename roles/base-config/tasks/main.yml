@@ -20,12 +20,12 @@
 #    state: latest
 
 - name: install base tools and packages
-      package:
-        name: "{{ __package }}"
-        state: present
-      loop: 
-        - gcc        
-        - python-pip
-        - httpie
-      loop_control:
-        loop_var: __package
+  package:
+    name: "{{ __package }}"
+    state: present
+  loop: 
+    - gcc        
+    - python-pip
+    - httpie
+  loop_control:
+    loop_var: __package
