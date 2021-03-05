@@ -16,7 +16,7 @@
     list: repos
   register: repo_list
 
-- debug: msg="{{ repo_list.stdout }}"
+- debug: msg="{{ repo_list }}"
 
 #- name: enable repos
 #  template:
