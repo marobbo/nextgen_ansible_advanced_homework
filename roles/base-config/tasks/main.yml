@@ -8,6 +8,14 @@
     replace: 'Defaults  !requiretty'
     backup: yes
 
+- name: Run yum clean
+  shell: yum clean all
+    
+- name: Install EPEL repos 
+  yum:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    state: present 
+
 - name: enable repos
   template:
     src: repos_template.j2
