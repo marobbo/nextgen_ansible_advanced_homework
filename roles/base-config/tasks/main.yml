@@ -20,5 +20,6 @@
 - name: install base tools and packages
   yum:
     name: ['gcc', 'python-pip']
+    disablerepo: "epel"
     state: latest
 
