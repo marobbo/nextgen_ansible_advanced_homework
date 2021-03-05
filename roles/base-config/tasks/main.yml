@@ -11,13 +11,6 @@
 - name: Run yum clean
   shell: yum clean all
 
-- name: List repos
-  yum:
-    list: repos
-  register: repo_list
-
-- debug: msg="{{ repo_list }}"
-
 #- name: enable repos
 #  template:
 #    src: repos_template.j2
@@ -25,8 +18,7 @@
 #    mode: 0644
 
 - name: install base tools and packages
-  yum:
+  dnf:
     name: ['gcc', 'python-pip']
-    disablerepo: "epel"
     state: latest
 
