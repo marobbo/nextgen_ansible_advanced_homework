@@ -1,6 +1,6 @@
 - name: Create instances
   os_server:
-    cloud: ospcloud
+    cloud: openstack
     name: "{{ item.value.name }}"
     state: "{{ item.value.state }}"
     image: "{{ item.value.image }}"
@@ -22,7 +22,7 @@
 
 - name: Add floating IP to instance
   os_floating_ip:
-    cloud: ospcloud
+    cloud: openstack
     state: present
     reuse: yes
     server: "{{ iten.value.name }}"
