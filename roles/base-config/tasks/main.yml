@@ -24,5 +24,7 @@
  
 - name: install base tools and packages
   yum:
-    name: ['httpie', 'python-pip'] 
+    name: ['httpie', 'python-pip']
+    enablerepo: rhel-7-server-extras-rpms 
     state: latest
+
