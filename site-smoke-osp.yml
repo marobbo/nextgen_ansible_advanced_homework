@@ -14,7 +14,7 @@
     uri:
       url: "http://{{item.public_v4}}"
       return_content: yes
-    until: "alive" in webpage.content
+    until: '"alive" in webpage.content'
     retries: 10
     delay: 1
     with_items:
