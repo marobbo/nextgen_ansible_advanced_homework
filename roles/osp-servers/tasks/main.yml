@@ -1,15 +1,15 @@
 - name: Create instances
   os_server:
     cloud: ospcloud
-    name: "{{ __openstack_server.name }}"
-    state: "{{ __openstack_server.state }}"
-    image: "{{ __openstack_server.image }}"
-    key_name: "{{ __openstack_server.key_name }}"
-    flavor: "{{ __openstack_server.flavor }}"
-    security_groups: "{{ __openstack_server.security_group }}"
+    name: "{{ item.value.name }}"
+    state: "{{ item.value.state }}"
+    image: "{{ item.value.image }}"
+    key_name: "{{ item.value.key_name }}"
+    flavor: "{{ item.value.flavor }}"
+    security_groups: "{{ item.value.security_group }}"
     nics:
       - net-name: int_network
-    meta: "{{ __openstack_server.meta }}"
+    meta: "{{ item.value.meta }}"
     userdata: |
       #!/bin/bash 
       curl -o /tmp/openstack.pub http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub 
@@ -25,8 +25,23 @@
     cloud: ospcloud
     state: present
     reuse: yes
-    server: "{{ __openstack_server.name }}"
+    server: "{{ iten.value.name }}"
     network: ext_network
     wait: true
     timeout: 200
   with_dict: "{{ osp_servers }}"
+
+- name: OpenStack servers
+  os_server_facts:
+    cloud: ospcloud
+  register: result
+
+- name: Wait for server to be available
+  wait_for:
+    host: "{{ item.public_v4 }}"
+    port: 22
+    search_regex: OpenSSH
+    timeout: 600
+  delegate_to: "{{ inventory_hostname }}"
+  with_items: 
+    - "{{ result.ansible_facts.openstack_servers }}"
