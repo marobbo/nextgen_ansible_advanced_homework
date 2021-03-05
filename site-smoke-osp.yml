@@ -30,5 +30,3 @@
     when: "'Ansible has done its job' not in webpage.results[0].content"
     tags:
       - osp.smoke
-    - name: Check webserver for correct response
-      
