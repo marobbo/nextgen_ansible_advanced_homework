@@ -15,7 +15,7 @@
     mode: 0644
 
 - name: install base tools and packages
-  dnf:
+  yum:
     name: ['gcc', 'python-pip']
     state: latest
 
