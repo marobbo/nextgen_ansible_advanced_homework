@@ -17,12 +17,8 @@
     dest: /etc/yum.repos.d/open_three-tier-app.repo
     mode: 0644
 
-- name: Enable extras rpms
-  shell: subscription-manager repos --enable rhel-7-server-extras-rpms
- 
 - name: install base tools and packages
   yum:
-    name: ['httpie', 'python-pip']
-    enablerepo: rhel-7-server-extras-rpms 
+    name: ['gcc', 'python-pip']
     state: latest
 
