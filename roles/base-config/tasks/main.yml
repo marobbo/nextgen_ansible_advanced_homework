@@ -10,7 +10,6 @@
 
 - name: Run yum clean
   shell: yum clean all
-  warn: false
 
 - name: List repos
   yum:
