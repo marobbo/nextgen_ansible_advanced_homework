@@ -14,7 +14,7 @@
 - name: List repos
   yum:
     list: repos
-    register: repo_list
+  register: repo_list
 
 - debug: msg="{{ repo_list.stdout }}"
 
