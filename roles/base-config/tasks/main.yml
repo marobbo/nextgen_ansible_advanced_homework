@@ -10,17 +10,15 @@
 
 - name: Run yum clean
   shell: yum clean all
-    
-- name: Install EPEL repos 
-  yum:
-    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-    state: present 
 
 - name: enable repos
   template:
     src: repos_template.j2
     dest: /etc/yum.repos.d/open_three-tier-app.repo
     mode: 0644
+
+- name: Enable extras rpms
+  shell: subscription-manager repos --enable rhel-7-server-extras-rpms
  
 - name: install base tools and packages
   yum:
