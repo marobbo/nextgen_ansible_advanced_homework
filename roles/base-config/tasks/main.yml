@@ -11,6 +11,10 @@
 - name: Run yum clean
   shell: yum clean all
 
+- name: List repos
+  yum:
+    list: repos
+
 #- name: enable repos
 #  template:
 #    src: repos_template.j2
