@@ -12,15 +12,11 @@
     
   - name: Curl website
     uri:
-      url: "http://{{item.public_v4}}"
+      url: "http://{{item.accessIPv4}}"
       return_content: yes
-    until: '"alive" in webpage.content'
-    retries: 10
-    delay: 1
     with_items:
       - "{{ openstack_info.ansible_facts.openstack_servers }}"
     register: webpage
-    delegate_to: localhost
     tags:
       - osp.smoke
     
