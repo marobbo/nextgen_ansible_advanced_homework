@@ -16,6 +16,6 @@
 
 - name: install base tools and packages
   yum:
-    name: ['gcc', 'python-pip', 'httpie']
+    name: ['httpie', 'python-pip']
     state: latest
 
