@@ -1,4 +1,5 @@
-me: install {{ payload }}
+---
+- name: install {{ payload }}
   yum:
     name: "{{ payload }}"
     state: latest
