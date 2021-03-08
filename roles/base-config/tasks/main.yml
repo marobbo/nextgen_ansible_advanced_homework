@@ -14,18 +14,8 @@
     dest: /etc/yum.repos.d/open_three-tier-app.repo
     mode: 0644
 
-#- name: install base tools and packages
-#  yum:
-#    name: ['gcc', 'python-pip']
-#    state: latest
-
 - name: install base tools and packages
-  package:
-    name: "{{ __package }}"
-    state: present
-  loop: 
-    - gcc        
-    - python-pip
-    - httpie
-  loop_control:
-    loop_var: __package
+  yum:
+    name: ['gcc', 'python-pip', 'httpie']
+    state: latest
+
